@@ -1,0 +1,2 @@
+[start]
+cmd = "npx -y serve dist -p 3000"
