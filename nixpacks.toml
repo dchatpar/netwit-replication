@@ -1,0 +1,3 @@
+# Override nixpacks to use a simple Node static server instead of Caddy
+[start]
+cmd = "node server.mjs"
