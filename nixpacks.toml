@@ -1,9 +1,6 @@
 # Force Node 24 for Vite 8 compatibility
-[variables]
-NIXPACKS_NODE_VERSION = "24"
-
-[phases.setup]
-nixpkgsArchive = "ba913eda2df8eb72147259189d55932012df6301"
+[providers.node]
+version = "24"
 
 [phases.install]
 cmds = ["npm ci"]
