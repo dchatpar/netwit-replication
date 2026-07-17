@@ -1,2 +1,12 @@
+# Pin Node to 22.12+ for Vite 8 compatibility
+[variables]
+NIXPACKS_NODE_VERSION = "22"
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
+
 [start]
 cmd = "node server.mjs"
