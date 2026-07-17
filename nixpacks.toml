@@ -1,7 +1,3 @@
-# Force Node 24 for Vite 8 compatibility
-[providers.node]
-version = "24"
-
 [phases.install]
 cmds = ["npm ci"]
 
