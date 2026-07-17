@@ -1,9 +1,15 @@
 import { createServer } from 'http'
 import { readFile, stat } from 'fs/promises'
-import { extname, join, normalize } from 'path'
+import { extname, join, normalize, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
+const __dirname = dirname(fileURLToPath(import.meta.url))
 const PORT = process.env.PORT || 3000
-const DIST = join(process.cwd(), 'dist')
+const DIST = join(__dirname, 'dist')
+
+console.log('Starting server...')
+console.log('PORT:', PORT)
+console.log('DIST:', DIST)
 
 const MIME = {
   '.html': 'text/html',
@@ -43,11 +49,17 @@ const server = createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': type })
     res.end(data)
   } catch (err) {
+    console.error('Server error:', err)
     res.writeHead(500)
-    res.end('Server error')
+    res.end('Server error: ' + err.message)
   }
 })
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on http://0.0.0.0:${PORT}`)
+})
+
+server.on('error', (err) => {
+  console.error('Listen error:', err)
+  process.exit(1)
 })
